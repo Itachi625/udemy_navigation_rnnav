@@ -14,7 +14,14 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home}/>
-        <Stack.Screen name="Users" component={Users}/>
+        <Stack.Screen 
+          name="Users" 
+          component={Users} 
+          initialParams={{
+            id:1,
+            codeName:'Iron horse'
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
