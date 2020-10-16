@@ -17,6 +17,12 @@ const Users  = () => {
                     active:'yes'
                 }) }
             />
+            <Button
+                title="change header"
+                onPress={()=> navigation.setOptions({
+                    title:'something else'
+                })}
+            />
         </View>
     )
 }
