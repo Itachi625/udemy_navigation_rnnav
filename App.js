@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Text,View } from 'react-native'
+import { Button, Text,View } from 'react-native'
 
 import Home from './src/home';
 import Users from './src/users';
@@ -42,10 +42,23 @@ const App = () => {
           name="Users" 
           component={Users} 
           initialParams={{ id:1, codeName:'Iron horse'}}
-          options={{
+          options={({navigation})=>({
+            headerLeft:()=> <Button
+              title="do back"
+              onPress={()=> navigation.navigate('Home')}
+            />,
+          })}
+          //   {
+          //   headerLeft:()=> <Button
+          //     title="do less"
+          //     onPress={()=> alert('less')}
+          //   />,
+          //   headerRight:()=> <Button
+          //   title="do more"
+          //   onPress={()=> alert('more')}
+          // />
             //headerTitle: props => LogoTitle(props)
             //title:'x-users'
-          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

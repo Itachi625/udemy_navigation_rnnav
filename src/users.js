@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text,View, Button } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native'
 
@@ -6,6 +6,18 @@ const Users  = () => {
     const navigation = useNavigation();
     const route = useRoute()
     const {id,codeName} = route.params;
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            navigation.setOptions({
+                headerRight:()=> <Button
+                    title="say somthing"
+                    onPress={()=> alert('something')}
+                />
+            })
+        },2000)
+    },[navigation])
+
 
     return(
         <View>
