@@ -23,7 +23,7 @@ const Users  = () => {
 
 
     console.log(navigation)
-    alert(isDrawerOpen)
+   // alert(isDrawerOpen)
 
     return(
         <View>
