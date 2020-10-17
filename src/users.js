@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { Text,View, Button } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native'
+import { useIsDrawerOpen} from '@react-navigation/drawer'
+
 
 const Users  = () => {
+    const isDrawerOpen = useIsDrawerOpen();
     const navigation = useNavigation();
     const route = useRoute()
     const {id,codeName} = route.params;
@@ -19,6 +22,9 @@ const Users  = () => {
     },[navigation])
 
 
+    console.log(navigation)
+    alert(isDrawerOpen)
+
     return(
         <View>
             <Text>ID:{id}</Text>
@@ -34,6 +40,12 @@ const Users  = () => {
                 onPress={()=> navigation.setOptions({
                     title:'something else'
                 })}
+            />
+            <Button
+                title="side drawer"
+                onPress={()=> navigation.toggleDrawer()}
+               // onPress={()=> navigation.openDrawer()}
+               // onPress={()=> navigation.closeDrawer()}
             />
         </View>
     )
