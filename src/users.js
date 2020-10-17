@@ -5,10 +5,10 @@ import { useIsDrawerOpen} from '@react-navigation/drawer'
 
 
 const Users  = () => {
-    const isDrawerOpen = useIsDrawerOpen();
+   // const isDrawerOpen = useIsDrawerOpen();
     const navigation = useNavigation();
-    const route = useRoute()
-    const {id,codeName} = route.params;
+    // const route = useRoute()
+    // const {id,codeName} = route.params;
 
     useEffect(()=>{
         setTimeout(()=>{
@@ -27,8 +27,8 @@ const Users  = () => {
 
     return(
         <View>
-            <Text>ID:{id}</Text>
-            <Text>CodeName:{codeName}</Text>
+            {/* <Text>ID:{id}</Text>
+            <Text>CodeName:{codeName}</Text> */}
             <Button
                 title="Go back"
                 onPress={()=> navigation.navigate('Home',{
@@ -41,12 +41,12 @@ const Users  = () => {
                     title:'something else'
                 })}
             />
-            <Button
+            {/* <Button
                 title="side drawer"
                 onPress={()=> navigation.toggleDrawer()}
                // onPress={()=> navigation.openDrawer()}
                // onPress={()=> navigation.closeDrawer()}
-            />
+            /> */}
         </View>
     )
 }

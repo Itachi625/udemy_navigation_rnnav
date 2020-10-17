@@ -7,7 +7,7 @@ const Home  = (props) => {
 
     return(
         <View>
-            <Text>Home</Text>
+            {/* <Text>Home</Text>
             <Text>
                 { props.route.params ?
                     props.route.params.active
@@ -19,6 +19,14 @@ const Home  = (props) => {
                 onPress={()=> props.navigation.navigate('Users',{
                     id:23
                 }) }
+            /> */}
+            <Button
+                title="Go to home settings"
+                onPress={()=> props.navigation.navigate('Home_settings')}
+            />
+            <Button
+                title="Go to home posts"
+                onPress={()=> props.navigation.navigate('Home_post')}
             />
         </View>
     )
