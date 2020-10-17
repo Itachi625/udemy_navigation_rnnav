@@ -1,63 +1,70 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Button, Text,View, Image } from 'react-native'
 
 import Home from './src/home';
 import Users from './src/users';
-
-// - HOME
-//    .setting
-//    .posts
-// - USERS
-//    .setting
-//    .profile
-// - POST
-
-const Stack = createStackNavigator();
-const HomeStack = () => (
-  <Stack.Navigator initialRouteName="Home">
-    <Stack.Screen name="Home" component={Home}/>
-    <Stack.Screen name="Home_settings">
-      { props => <Text>Home settings</Text>}
-    </Stack.Screen>
-    <Stack.Screen name="Home_post">
-      { props => <Text>Home posts</Text>}
-    </Stack.Screen>
-  </Stack.Navigator>
-)
+import LogoTitle from './src/utils/logoTitle';
+import MyCustomDrawer from './src/utils/customDrawer';
 
 const Tab = createBottomTabNavigator();
-const UserTab = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Users" component={Users}/>
-    <Tab.Screen name="Users_settings">
-      { props => <Text>user settings</Text>}
-    </Tab.Screen>
-    <Tab.Screen name="Users_profile">
-      { props => <Text>user profile</Text>}
-    </Tab.Screen>
-  </Tab.Navigator>
-)
+
+import Logo from './src/images/paypal-logo.png';
+import Logo_red from './src/images/paypal-logo-red.png';
+
+const CustomTabBar = (props) => {
+  return(
+    <View style={{ flexDirection:'row'}}> 
+      <Button title="Home" />
+      <Button title="User"/>
+    </View>
+  )
+}
 
 
-const Drawer = createDrawerNavigator();
-
-function App() {
-  return (
+const App = () => {
+  return(
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={HomeStack}/>
-        <Drawer.Screen name="Users" component={UserTab}/>
-        <Drawer.Screen name="Posts">
-          { props => <Text>Posts main</Text>}
-        </Drawer.Screen>
-      </Drawer.Navigator>
+      <Tab.Navigator
+      tabBar={ props => <CustomTabBar {...props}/>}
+        screenOptions={({route})=>({
+          tabBarIcon: ({focused,color,size}) => {
+
+            if(route.name === 'Home'){
+              return focused ?
+                <Image source={Logo} style={{width:50,height:50}}/>
+              :
+                <Image source={Logo_red} style={{width:50,height:50}}/>
+            }
+
+            return null
+          }
+        })}
+        tabBarOptions={{
+          activeTintColor:'red',
+          inactiveTintColor:'green',
+          activeBackgroundColor:'blue',
+          style:{
+            backgroundColor:'grey'
+          },
+          labelStyle:{
+            fontSize:20
+          }
+        }}
+      >
+        <Tab.Screen name="Home" component={Home}/>
+        <Tab.Screen 
+          name="Users" 
+          component={Users}
+          options={{
+            tabBarLabel:'dog'
+          }}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
-  );
+  )
 }
 
 export default App;
